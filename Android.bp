@@ -6,17 +6,17 @@ soong_namespace {
 }
 
 cc_prebuilt_library_shared {
-	name: "libdisplayconfig.qti",
+	name: "librecovery_updater_msm",
 	owner: "realme",
 	strip: {
 		none: true,
 	},
 	target: {
 		android_arm: {
-			srcs: ["proprietary/vendor/lib/libdisplayconfig.qti.so"],
+			srcs: ["proprietary/vendor/lib/librecovery_updater_msm.so"],
 		},
 		android_arm64: {
-			srcs: ["proprietary/vendor/lib64/libdisplayconfig.qti.so"],
+			srcs: ["proprietary/vendor/lib64/librecovery_updater_msm.so"],
 		},
 	},
 	compile_multilib: "both",
