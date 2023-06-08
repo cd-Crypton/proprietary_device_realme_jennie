@@ -3,7 +3,7 @@
 # All Rights Reserved.
 # Confidential and Proprietary - Qualcomm Technologies, Inc.
 #
-
-on early-boot
+#Qiuyu.Qiu@ANDROID.BOOT.QUICKBOOT.4359163, 2022/11/28,If bootmode is charger,The value of "sys.boot.charger" will be "1"，do not boot wlan.
+on early-boot && property:sys.boot.charger=0
     write /sys/kernel/icnss/wlan_en_delay 1000
     write /sys/kernel/icnss/wpss_boot 1

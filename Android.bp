@@ -25,27 +25,6 @@ cc_prebuilt_library_shared {
 	soc_specific: true,
 }
 
-
-cc_prebuilt_library_shared {
-	name: "librecovery_updater_msm",
-	owner: "realme",
-	strip: {
-		none: true,
-	},
-	target: {
-		android_arm: {
-			srcs: ["proprietary/vendor/lib/librecovery_updater_msm.so"],
-		},
-		android_arm64: {
-			srcs: ["proprietary/vendor/lib64/librecovery_updater_msm.so"],
-		},
-	},
-	compile_multilib: "both",
-	check_elf_files: false,
-	prefer: true,
-	soc_specific: true,
-}
-
 cc_prebuilt_library_shared {
 	name: "libar-gsl",
 	owner: "realme",
@@ -289,6 +268,20 @@ dex_import {
 	name: "WfdCommon",
 	owner: "realme",
 	jars: ["proprietary/system/framework/WfdCommon.jar"],
+}
+
+dex_import {
+	name: "com.oplus.camera.unit.sdk.adapter",
+	owner: "realme",
+	jars: ["proprietary/system_ext/framework/com.oplus.camera.unit.sdk.adapter.jar"],
+	system_ext_specific: true,
+}
+
+dex_import {
+	name: "com.oplus.camera.unit.sdk",
+	owner: "realme",
+	jars: ["proprietary/system_ext/framework/com.oplus.camera.unit.sdk.jar"],
+	system_ext_specific: true,
 }
 
 dex_import {

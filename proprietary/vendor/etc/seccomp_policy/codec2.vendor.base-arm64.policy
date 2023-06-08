@@ -97,3 +97,5 @@ flock: 1
 fchmod: 1
 #endif /*OPLUS_FEATURE_VIDEOLOGKIT*/
 
+sched_setaffinity: 1
+sched_getaffinity: 1

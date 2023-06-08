@@ -161,14 +161,14 @@ function oplus_configure_tuning_swappiness() {
 		echo 0 > $para_path/vm_swappiness_threshold2
 		echo 0 > $para_path/swappiness_threshold2_size
 	elif [ $MemTotal -le 8388608 ]; then
-		echo 100  > $para_path/vm_swappiness_threshold1
+		echo 70  > $para_path/vm_swappiness_threshold1
 		echo 2000 > $para_path/swappiness_threshold1_size
-		echo 120  > $para_path/vm_swappiness_threshold2
+		echo 90  > $para_path/vm_swappiness_threshold2
 		echo 1500 > $para_path/swappiness_threshold2_size
 	else
-		echo 100  > $para_path/vm_swappiness_threshold1
+		echo 70  > $para_path/vm_swappiness_threshold1
 		echo 4096 > $para_path/swappiness_threshold1_size
-		echo 120  > $para_path/vm_swappiness_threshold2
+		echo 90  > $para_path/vm_swappiness_threshold2
 		echo 2048 > $para_path/swappiness_threshold2_size
 	fi
 }
@@ -229,7 +229,20 @@ function configure_memory_parameters() {
 	#
 	MemTotalStr=`cat /proc/meminfo | grep MemTotal`
 	MemTotal=${MemTotalStr:16:8}
-
+	prjname=`getprop ro.boot.prjname`
+	# configure boost pool
+	if [ -n "$prjname" ]; then
+		case $prjname in
+			"21001"|"21201"|"20846"|"20847")
+			if [ $MemTotal -gt 8388608 ]; then
+				echo 128000 > /proc/boost_pool/camera_pages
+			fi
+			;;
+		*)
+			echo "$prjname:no special config<camera_pages>"
+			;;
+		esac
+	fi
 #ifdef OPLUS_FEATURE_ZRAM_OPT
 	# For vts test which has replace system.img
 	ls -l /product | grep '\-\>'

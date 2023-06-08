@@ -8,12 +8,3 @@ service feature_enabler_client /vendor/bin/feature_enabler_client
     class late_start
     user system
     group system graphics
-
-on property:init.svc.vendor.qti.hardware.display.composer=stopping
-    stop feature_enabler_client
-
-on property:init.svc.vendor.qti.hardware.display.composer=running
-    start feature_enabler_client
-
-on property:init.svc.vendor.qti.hardware.display.composer=restarting
-    restart feature_enabler_client
